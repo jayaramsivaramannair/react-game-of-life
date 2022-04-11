@@ -1,7 +1,10 @@
+import Controls from './components/Controls'
+
 function App() {
   return (
     <div className="App">
-      Conway's Game of Life
+      <h1>Conway's Game of Life</h1>
+      <Controls />
     </div>
   );
 }
