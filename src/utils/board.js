@@ -120,9 +120,23 @@ const countCellNeighbors = (rowIndex, colIndex, currentBoard) => {
 }
 
 
+const convertToOneDimensional= (currentBoard) => {
+  let oneDimensional = [];
+  currentBoard.forEach(row => {
+    row.map(cell => {
+      return oneDimensional.push(cell)
+    })
+  })
+
+  return oneDimensional
+}
+
+
+
 
 export const boardFunctions = {
   createBoard,
   createPattern,
   updateBoard,
+  convertToOneDimensional
 }

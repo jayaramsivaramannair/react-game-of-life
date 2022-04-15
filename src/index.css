@@ -1,13 +1,11 @@
 body {
   background-color: black;
   color: #66ff33;
-  margin: 400px auto;
-  width: 960px;
+  margin: 50px auto;
   text-align: center;
 }
 
 .App {
-  border: 2px solid green;
   font-family: 'Bungee', cursive;
 }
 
@@ -16,12 +14,18 @@ h1 {
   font-size: 50px;
 }
 
+.container {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
 .controls {
   font-size: 20px;
   display: grid;
   justify-items: center;
   align-items: center;
-  border: 2px solid red;
+  height: 450px;
 }
 
 .option {
@@ -39,4 +43,20 @@ h1 {
   width: 300px;
   height: 100px;
   margin: 5px;
+}
+
+.game-board {
+  display: grid;
+  width: 750px;
+  grid-template-columns: repeat(50, 15px);
+  grid-column-gap: 2px;
+  justify-items: stretch;
+}
+
+.cell {
+  width: 15px;
+  font-size: 10px;
+  height: 15px;
+  border: 1px solid aliceblue;
+  background-color: royalblue;
 }
