@@ -4,7 +4,13 @@ import Board from './components/Board'
 
 function App() {
   const [showPatterns, setShowPatterns] = useState(false)
-  const [board, setBoard] = useState([])
+  const [board, setBoard] = useState({
+    grid: [],
+    oneDimensionalBoard: [],
+    generation: 0,
+    running: false,
+    currentSimulationID: '',
+  })
   return (
     <div className="App">
       <h1>Conway's Game of Life</h1>
@@ -14,6 +20,8 @@ function App() {
           setBoard = {setBoard}
         />
         <Controls
+          board = {board}
+          setBoard = {setBoard}
           showPatterns = {showPatterns}
           setShowPatterns = {setShowPatterns}
         />

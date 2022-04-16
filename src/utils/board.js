@@ -131,12 +131,17 @@ const convertToOneDimensional= (currentBoard) => {
   return oneDimensional
 }
 
-
+const nextGeneration = (board, setBoardFunction, updateBoardFunction) => {
+  let currentConfig = board
+  let count = board.generation
+  setBoardFunction({...currentConfig, generation: count + 1, running: true, grid: updateBoardFunction(currentConfig)})
+}
 
 
 export const boardFunctions = {
   createBoard,
   createPattern,
   updateBoard,
-  convertToOneDimensional
+  convertToOneDimensional,
+  nextGeneration
 }

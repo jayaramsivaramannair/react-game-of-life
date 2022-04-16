@@ -1,9 +1,51 @@
 import React from 'react'
+import {boardFunctions} from '../utils/board';
 
-const Controls = ({showPatterns, setShowPatterns}) => {
+const Controls = ({showPatterns, setShowPatterns, board, setBoard}) => {
   const togglePatterns = () => {
     setShowPatterns(!showPatterns)
   }
+
+  const {createBoard, nextGeneration, updateBoard, convertToOneDimensional} = boardFunctions
+  const {running} = board
+
+  const startSimulation = () => {
+    if (!running) {
+      setBoard(board => {
+        return {...board, currentSimulationID : setInterval(
+          () => {nextGeneration(board, setBoard, updateBoard)}, 300
+          ),
+          running: true
+      }
+    })
+  }
+  return 
+ }
+
+
+ const pauseSimulation = () => {
+   if (running) {
+      setBoard(board => {
+        return {...board, running: false, currentSimulationID: ''}
+      })
+   } else {
+     startSimulation()
+   }
+ }
+
+ const randomizeBoard = () => {
+   setBoard(board => {
+     const grid = board.grid
+     return {...board, 
+      grid: createBoard('randomize'),
+      oneDimensionalBoard: convertToOneDimensional(grid),
+      generation: 0,
+      running: false,
+      currentSimulationID: ''
+    }
+   })
+ }
+
   return (
       <div>
       {
@@ -16,7 +58,10 @@ const Controls = ({showPatterns, setShowPatterns}) => {
           <div className="option">
             Start/Pause/Resume
           </div>
-          <div className="option">
+          <div 
+            className="option"
+            onClick={randomizeBoard}
+          >
             Randomize
           </div>
           <div className="option">

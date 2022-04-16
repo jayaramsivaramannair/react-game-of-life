@@ -11,21 +11,24 @@ const  Board = ({
 
   const changeColor = (cellValue) => {
     if (cellValue === 1) {
-      return '#66ff33'
+      return 'royalblue'
     }
     return ''
   }
 
   useEffect(() => {
     console.log("just render on initial render")
-    const newBoard = convertToOneDimensional(createBoard('randomize'))
-    setBoard(newBoard)
+    const newBoard = createBoard('randomize')
+    setBoard((board) => {
+      return {...board, grid: newBoard, oneDimensionalBoard: convertToOneDimensional(newBoard)}
+    })
   }, [convertToOneDimensional, createBoard, setBoard])
+
+  
   return (
     <div className="game-board">
       {
-        board.map((cell, cellIndex) => {
-          console.log(cell)
+        board.oneDimensionalBoard.map((cell, cellIndex) => {
           return <div className="cell" 
           key={cellIndex} 
           id={cellIndex}
