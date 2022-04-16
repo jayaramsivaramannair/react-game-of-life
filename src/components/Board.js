@@ -9,6 +9,13 @@ const  Board = ({
 
   const {createBoard, convertToOneDimensional} = boardFunctions
 
+  const changeColor = (cellValue) => {
+    if (cellValue === 1) {
+      return '#66ff33'
+    }
+    return ''
+  }
+
   useEffect(() => {
     console.log("just render on initial render")
     const newBoard = convertToOneDimensional(createBoard('randomize'))
@@ -18,7 +25,13 @@ const  Board = ({
     <div className="game-board">
       {
         board.map((cell, cellIndex) => {
-          return <div className="cell" key={cellIndex}></div>
+          console.log(cell)
+          return <div className="cell" 
+          key={cellIndex} 
+          id={cellIndex}
+          style = {{backgroundColor: changeColor(cell)}}
+          >
+          </div>
         })
       }
     </div>
