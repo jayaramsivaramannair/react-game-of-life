@@ -10,7 +10,7 @@ const  Board = ({
 
   const changeColor = (cellValue) => {
     if (cellValue === 1) {
-      return 'royalblue'
+      return '#66ff33'
     }
     return ''
   }

@@ -1,12 +1,19 @@
 import React from 'react'
 import {boardFunctions} from '../utils/board';
+import {allPatterns} from '../utils/preloadedpatterns';
 
 const Controls = ({showPatterns, setShowPatterns, board, setBoard}) => {
   const togglePatterns = () => {
     setShowPatterns(!showPatterns)
   }
 
-  const {createBoard, nextGeneration, updateBoard, convertToOneDimensional} = boardFunctions
+  const {
+    createBoard, 
+    nextGeneration, 
+    updateBoard, 
+    convertToOneDimensional,
+    createPattern,
+  } = boardFunctions
   const {running} = board
 
   const startSimulation = () => {
@@ -30,6 +37,28 @@ const Controls = ({showPatterns, setShowPatterns, board, setBoard}) => {
       })
    } else {
      startSimulation()
+   }
+ }
+
+ const patternSelection = (e) => {
+   console.log(e.target.innerText)
+   let pattern = e.target.innerText;
+   let patterns = {
+     'Glider Gun': 'gliderGun',
+     'Crazy Corners': 'crazyCorners',
+     'Pentadecathlon': 'pentadecathlon',
+     'Pulsar': 'pulsar',
+     'Baby Pulsar': 'firstGenPulsar',
+     'Maximum Density Still Life': 'maxDensityStillLife',
+     'Load Pattern': 'gliderGunAndPulsars',
+   }
+
+   if (pattern !== 'Load Pattern') {
+    const selectedPattern = createPattern(allPatterns[patterns[pattern]])
+    setBoard((board) => {return {...board, grid: selectedPattern}})
+   } else {
+     const selectedPattern = allPatterns[patterns[pattern]]
+     setBoard((board) => {return {...board, grid: selectedPattern}})
    }
  }
 
@@ -87,13 +116,13 @@ const Controls = ({showPatterns, setShowPatterns, board, setBoard}) => {
         </div>
          : 
         <div className="controls"> 
-          <div className="option">Glider Gun</div>
-          <div className="option">Pulsar</div>
-          <div className="option">Crazy Corners</div>
-          <div className="option">Pentadecathlon</div>
-          <div className="option">Baby Pulsar</div>
-          <div className="option">Load Pattern</div>
-          <div className="option">Maximum Density Still Life</div>
+          <div className="option" onClick={(e) => patternSelection(e)}>Glider Gun</div>
+          <div className="option" onClick={(e) => patternSelection(e)}>Pulsar</div>
+          <div className="option" onClick={(e) => patternSelection(e)}>Crazy Corners</div>
+          <div className="option" onClick={(e) => patternSelection(e)}>Pentadecathlon</div>
+          <div className="option" onClick={(e) => patternSelection(e)}>Baby Pulsar</div>
+          <div className="option" onClick={(e) => patternSelection(e)}>Load Pattern</div>
+          <div className="option" onClick={(e) => patternSelection(e)}>Maximum Density Still Life</div>
           <div className="option" onClick={togglePatterns}>Back To Controls</div>
         </div>
       }

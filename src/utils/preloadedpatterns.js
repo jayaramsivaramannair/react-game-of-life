@@ -43,7 +43,7 @@ const pentadecathlon = [[10, 14],[11, 14],[12, 13],[12, 15],[13, 14],[14, 14],[1
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  ];
 
- export const allPatterns = [
+ export const allPatterns = {
    maxDensityStillLife,
    gliderGun,
    gliderGunAndPulsars,
@@ -51,4 +51,4 @@ const pentadecathlon = [[10, 14],[11, 14],[12, 13],[12, 15],[13, 14],[14, 14],[1
    pulsar,
    crazyCorners,
    firstGenPulsar,
- ]
+ }
