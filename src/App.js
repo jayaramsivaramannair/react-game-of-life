@@ -6,7 +6,6 @@ function App() {
   const [showPatterns, setShowPatterns] = useState(false)
   const [board, setBoard] = useState({
     grid: [],
-    oneDimensionalBoard: [],
     generation: 0,
     running: false,
     currentSimulationID: '',

@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react'
-
-import {boardFunctions} from '../utils/board';
+import {boardFunctions} from '../utils/board'
 
 const  Board = ({
   board,
@@ -20,15 +19,14 @@ const  Board = ({
     console.log("just render on initial render")
     const newBoard = createBoard('randomize')
     setBoard((board) => {
-      return {...board, grid: newBoard, oneDimensionalBoard: convertToOneDimensional(newBoard)}
+      return {...board, grid: newBoard}
     })
-  }, [convertToOneDimensional, createBoard, setBoard])
+  }, [createBoard, setBoard])
 
-  
   return (
     <div className="game-board">
       {
-        board.oneDimensionalBoard.map((cell, cellIndex) => {
+        convertToOneDimensional(board.grid).map((cell, cellIndex) => {
           return <div className="cell" 
           key={cellIndex} 
           id={cellIndex}

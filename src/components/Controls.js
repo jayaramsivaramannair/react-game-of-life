@@ -35,14 +35,25 @@ const Controls = ({showPatterns, setShowPatterns, board, setBoard}) => {
 
  const randomizeBoard = () => {
    setBoard(board => {
-     const grid = board.grid
      return {...board, 
       grid: createBoard('randomize'),
-      oneDimensionalBoard: convertToOneDimensional(grid),
+      oneDimensionalBoard: convertToOneDimensional(board.grid),
       generation: 0,
       running: false,
       currentSimulationID: ''
     }
+   })
+ }
+
+ const clearBoard = () => {
+   setBoard(board => {
+      return {
+        grid: createBoard(0),
+        oneDimensionalBoard: convertToOneDimensional(board.grid),
+        generation: 0,
+        running: false,
+        currentSimulationID: '',
+      }
    })
  }
 
@@ -64,7 +75,10 @@ const Controls = ({showPatterns, setShowPatterns, board, setBoard}) => {
           >
             Randomize
           </div>
-          <div className="option">
+          <div 
+            className="option"
+            onClick={clearBoard}
+          >
             Clear Board
           </div>
           <div className="option" onClick={togglePatterns}>
