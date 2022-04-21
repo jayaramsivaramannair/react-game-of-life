@@ -17,21 +17,22 @@ const Controls = ({showPatterns, setShowPatterns, board, setBoard}) => {
   const {running} = board
 
   const startSimulation = () => {
-    if (!running) {
-      setBoard(board => {
-        return {...board, currentSimulationID : setInterval(
-          () => {nextGeneration(board, setBoard, updateBoard)}, 300
-          ),
-          running: true
+    if(running) {
+      return
+    }
+    setBoard(board => {
+      return {...board, currentSimulationID : setInterval(
+        () => {nextGeneration(board, setBoard, updateBoard)}, 300
+        )
       }
     })
   }
-  return 
- }
 
 
  const pauseSimulation = () => {
+   console.log('Button Clicked!')
    if (running) {
+     clearInterval(board.currentSimulationID)
       setBoard(board => {
         return {...board, running: false, currentSimulationID: ''}
       })
@@ -41,7 +42,6 @@ const Controls = ({showPatterns, setShowPatterns, board, setBoard}) => {
  }
 
  const patternSelection = (e) => {
-   console.log(e.target.innerText)
    let pattern = e.target.innerText;
    let patterns = {
      'Glider Gun': 'gliderGun',
@@ -93,9 +93,9 @@ const Controls = ({showPatterns, setShowPatterns, board, setBoard}) => {
         <div className="controls">
           <div className="display">
             Generation
-            <p>0</p>
+            <p>{board.generation}</p>
           </div>
-          <div className="option">
+          <div className="option" onClick={pauseSimulation}>
             Start/Pause/Resume
           </div>
           <div 

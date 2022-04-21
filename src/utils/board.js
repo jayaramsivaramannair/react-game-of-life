@@ -132,9 +132,12 @@ const convertToOneDimensional= (currentBoard) => {
 }
 
 const nextGeneration = (board, setBoardFunction, updateBoardFunction) => {
-  let currentConfig = board
-  let count = board.generation
-  setBoardFunction({...currentConfig, generation: count + 1, running: true, grid: updateBoardFunction(currentConfig)})
+  console.log('Next Generation Function Started')
+  setBoardFunction((board) => {
+    return {
+      ...board, generation: board.generation + 1, running: true, grid: updateBoardFunction(board.grid)
+    }
+  })
 }
 
 
